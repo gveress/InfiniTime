@@ -2,7 +2,7 @@
 
 using namespace Pinetime::Controllers;
 
-void MotionController::Update(int16_t x, int16_t y, int16_t z, uint32_t nbSteps, uint32_t nbAcc) {
+void MotionController::Update(int16_t x, int16_t y, int16_t z, uint32_t nbSteps) {
   if (this->nbSteps != nbSteps && service != nullptr) {
     service->OnNewStepCountValue(nbSteps);
   }
@@ -11,7 +11,7 @@ void MotionController::Update(int16_t x, int16_t y, int16_t z, uint32_t nbSteps,
     service->OnNewMotionValues(x, y, z);
   }
 
-  this->nbAcc =  x*x + y*y + z*z;
+
   
   this->x = x;
   this->y = y;

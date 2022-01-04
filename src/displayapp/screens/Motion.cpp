@@ -55,7 +55,7 @@ void Motion::Refresh() {
   lv_chart_set_next(chart, ser3, motionController.Z());
 
   lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
-  lv_label_set_text_fmt(labelAcc, "ACC FALL %lu", motionController.NbSteps());
+  lv_label_set_text_fmt(labelAcc, "ACC FALL %lu", motionController.NbAcc());
 
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",

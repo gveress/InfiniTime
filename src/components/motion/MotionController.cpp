@@ -11,8 +11,7 @@ void MotionController::Update(int16_t x, int16_t y, int16_t z, uint32_t nbSteps,
     service->OnNewMotionValues(x, y, z);
   }
 
-  uint32_t nbAcc = x*x + y*y + z*z;
-  this->nbAcc = nbAcc;
+  this->nbAcc =  x*x + y*y + z*z;
   
   this->x = x;
   this->y = y;

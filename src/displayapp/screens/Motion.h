@@ -28,6 +28,7 @@ namespace Pinetime {
         lv_obj_t* label;
 
         lv_obj_t* labelStep;
+        lv_obj_t* labelAcc;
         lv_task_t* taskRefresh;
       };
     }

@@ -54,7 +54,7 @@ void Motion::Refresh() {
   lv_chart_set_next(chart, ser2, motionController.Y());
   lv_chart_set_next(chart, ser3, motionController.Z());
   
-  int32_t nbAcc =  x*x + y*y + z*z;
+  int32_t nbAcc =  motionController.X()*motionController.X() + motionController.Y()*motionController.Y() + motionController.Z()*motionController.Z();
 
   lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
   lv_label_set_text_fmt(labelAcc, "ACC FALL %lu", nbAcc);

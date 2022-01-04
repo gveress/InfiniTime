@@ -35,11 +35,11 @@ Motion::Motion(Pinetime::Applications::DisplayApp* app, Controllers::MotionContr
 
   labelStep = lv_label_create(lv_scr_act(), NULL);
   lv_obj_align(labelStep, chart, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
-  lv_label_set_text(labelStep, "FALL Steps ---");
+  lv_label_set_text(labelStep, "Steps ---");
     
   labelAcc = lv_label_create(lv_scr_act(), NULL);
   lv_obj_align(labelAcc, chart, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
-  lv_label_set_text(labelStep, "FALL ACC ---");
+  lv_label_set_text(labelStep, "ACC ---");
     
   taskRefresh = lv_task_create(RefreshTaskCallback, LV_DISP_DEF_REFR_PERIOD, LV_TASK_PRIO_MID, this);
 }
@@ -56,8 +56,8 @@ void Motion::Refresh() {
   
   int32_t nbAcc =  motionController.X()*motionController.X() + motionController.Y()*motionController.Y() + motionController.Z()*motionController.Z();
 
-  lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
-  lv_label_set_text_fmt(labelAcc, "ACC FALL %lu", nbAcc);
+  lv_label_set_text_fmt(labelStep, "Sts %lu", motionController.NbSteps());
+  lv_label_set_text_fmt(labelAcc, "ACC %lu", nbAcc);
 
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",

@@ -57,11 +57,11 @@ void Motion::Refresh() {
   lv_chart_set_next(chart, ser2, motionController.Y());
   lv_chart_set_next(chart, ser3, motionController.Z());
   
-  double SMV = sqrt(motionController.X()*motionController.X()/ggnorm + motionController.Y()*motionController.Y()/ggnorm + motionController.Z()*motionController.Z()/ggnorm);
+  double SMV = sqrt(motionController.X()/0x10*motionController.X()/0x10/ggnorm + motionController.Y()/0x10*motionController.Y()/0x10/ggnorm + motionController.Z()/0x10*motionController.Z()/0x10/ggnorm);
 
 
   lv_label_set_text_fmt(labelStep, "Sts %lu", motionController.NbSteps());
-  lv_label_set_text_fmt(labelAcc, "SMV %f", SMV);
+  lv_label_set_text_fmt(labelAcc, "SMV %5.2f", SMV);
 
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",

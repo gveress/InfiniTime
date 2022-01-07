@@ -51,13 +51,13 @@ Motion::~Motion() {
 }
 
 void Motion::Refresh() {
-  
+  double ggnorm = 65*65;
   
   lv_chart_set_next(chart, ser1, motionController.X());
   lv_chart_set_next(chart, ser2, motionController.Y());
   lv_chart_set_next(chart, ser3, motionController.Z());
   
-  double SMV = Math.sqrt(motionController.X()*motionController.X() + motionController.Y()*motionController.Y() + motionController.Z()*motionController.Z());
+  double SMV = sqrt(motionController.X()*motionController.X()/ggnorm + motionController.Y()*motionController.Y()/ggnorm + motionController.Z()*motionController.Z()/ggnorm);
 
 
   lv_label_set_text_fmt(labelStep, "Sts %lu", motionController.NbSteps());

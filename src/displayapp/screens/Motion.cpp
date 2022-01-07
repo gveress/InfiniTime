@@ -51,15 +51,17 @@ Motion::~Motion() {
 }
 
 void Motion::Refresh() {
+  
+  
   lv_chart_set_next(chart, ser1, motionController.X());
   lv_chart_set_next(chart, ser2, motionController.Y());
   lv_chart_set_next(chart, ser3, motionController.Z());
   
-  int32_t nbAcc =  motionController.X()*motionController.X() + motionController.Y()*motionController.Y() + motionController.Z()*motionController.Z();
+  double SMV = Math.sqrt(motionController.X()*motionController.X() + motionController.Y()*motionController.Y() + motionController.Z()*motionController.Z());
 
 
   lv_label_set_text_fmt(labelStep, "Sts %lu", motionController.NbSteps());
-  lv_label_set_text_fmt(labelAcc, "ACC %lu", nbAcc);
+  lv_label_set_text_fmt(labelAcc, "SMV %f", SMV);
 
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",

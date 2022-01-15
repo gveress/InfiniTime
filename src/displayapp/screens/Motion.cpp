@@ -51,19 +51,23 @@ Motion::~Motion() {
 }
 
 void Motion::Refresh() {
+/*
   double ggnorm = 65*65;
   double SMV = sqrt(motionController.X()/0x10*motionController.X()/0x10/ggnorm + motionController.Y()/0x10*motionController.Y()/0x10/ggnorm + motionController.Z()/0x10*motionController.Z()/0x10/ggnorm);
   uint16_t intSMV = (unsigned int)round(100*SMV);
+*/
+  
+  uint16_t vectorSUM = motionController.X() + motionController.Y() + motionController.Z();
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
-  lv_chart_set_next(chart, ser1, intSMV);
+  lv_chart_set_next(chart, ser1, vectorSUM);
   lv_chart_set_next(chart, ser2, motionController.Y());
   lv_chart_set_next(chart, ser3, motionController.Z());
   
   
 
   lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
-  lv_label_set_text_fmt(labelAcc, "SMV %lu", intSMV);
+  lv_label_set_text_fmt(labelAcc, "vecSUM %lu", vectorSUM);
 
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",

@@ -57,7 +57,7 @@ void Motion::Refresh() {
   uint16_t intSMV = (unsigned int)round(100*SMV);
 */
   
-  uint16_t vectorSUM = motionController.X() + motionController.Y() + motionController.Z();
+  uint16_t vectorSUM = motionController.X() / 0x10 + motionController.Y() / 0x10+ motionController.Z() / 0x10;
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
   lv_chart_set_next(chart, ser1, vectorSUM);

@@ -78,13 +78,15 @@ void Motion::Refresh() {
   int16_t vectorSUM = abs(myX) + abs(myY) + abs(myZ) ;
 
   double SMV = sqrt(myX * myX + myY * myY + myZ * myZ ); 
-  int16_t intSMV = (int)round(100*SMV);
+  int16_t intSMV = (int)round(100 * SMV) / 100;
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
   lv_chart_set_next(chart, ser1, intSMV);
-  lv_chart_set_next(chart, ser2, myX);
-  lv_chart_set_next(chart, ser3, myY);
-  lv_chart_set_next(chart, ser4, myZ);
+  lv_chart_set_next(chart, ser2, vectorSUM);
+
+//  lv_chart_set_next(chart, ser2, myX);
+//  lv_chart_set_next(chart, ser3, myY);
+//  lv_chart_set_next(chart, ser4, myZ);
   
 /*
   lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
@@ -92,7 +94,6 @@ void Motion::Refresh() {
   lv_label_set_text_fmt(labelAcc, "vecSUM %lu", vectorSUM);
 */  
 
-  lv_label_set_text_fmt(labelStep, "VSum %d intSMV %d", vectorSUM, intSMV);
   lv_label_set_text_fmt(labelStep, "VSum %d intSMV %d", vectorSUM, intSMV);
   lv_obj_align(labelStep, chart, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
  

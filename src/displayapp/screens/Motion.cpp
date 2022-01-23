@@ -55,25 +55,25 @@ void Motion::Refresh() {
   double ggnorm = 64*64;
   double SMV = sqrt(motionController.X()/0x10*motionController.X()/0x10/ggnorm + motionController.Y()/0x10*motionController.Y()/0x10/ggnorm + motionController.Z()/0x10*motionController.Z()/0x10/ggnorm);
   uint16_t intSMV = (unsigned int)round(100*SMV);
-  
-  int16_t myX = motionController.X() / 0x10;
-  int16_t myY = motionController.Y() / 0x10;
-  int16_t myZ = motionController.Z() / 0x10;
-*/
 
-  
   int16_t myX = motionController.X();
   int16_t myY = motionController.Y();
   int16_t myZ = motionController.Z();
 
-  
+  int16_t myX = motionController.X() / 0x10;
+  int16_t myY = motionController.Y() / 0x10;
+  int16_t myZ = motionController.Z() / 0x10;
+*/
+  int16_t accNorm = 1024;
+
+  int16_t myX = 100 * motionController.X() / accNorm;
+  int16_t myY = 100 * motionController.Y() / accNorm;
+  int16_t myZ = 100 * motionController.Z() / accNorm;
   
   int16_t vectorSUM = abs(myX) + abs(myY) + abs(myZ) ;
 
   double SMV = sqrt(myX * myX + myY * myY + myZ * myZ ); 
   int16_t intSMV = (int)round(100*SMV);
-  
-  
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
   lv_chart_set_next(chart, ser1, myX);
@@ -87,8 +87,7 @@ void Motion::Refresh() {
   lv_label_set_text_fmt(labelAcc, "vecSUM %lu", vectorSUM);
 */  
 
-  lv_label_set_text_fmt(labelAcc, "S %f M %d", SMV, intSMV);
-  
+  lv_label_set_text_fmt(labelStep, "VSum %d intSMV %d", vectorSum, intSMV);
   
 /*
   lv_label_set_text_fmt(label,

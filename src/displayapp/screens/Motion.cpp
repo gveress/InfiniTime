@@ -13,7 +13,8 @@ Motion::Motion(Pinetime::Applications::DisplayApp* app, Controllers::MotionContr
   // lv_chart_set_series_opa(chart, LV_OPA_70);                            /*Opacity of the data series*/
   // lv_chart_set_series_width(chart, 4);                                  /*Line width and point radious*/
 
-  lv_chart_set_range(chart, -1100, 1100);
+//  lv_chart_set_range(chart, -1100, 1100);
+  lv_chart_set_range(chart, -200, 200);
   lv_chart_set_update_mode(chart, LV_CHART_UPDATE_MODE_SHIFT);
   lv_chart_set_point_count(chart, 10);
 
@@ -21,10 +22,13 @@ Motion::Motion(Pinetime::Applications::DisplayApp* app, Controllers::MotionContr
   ser1 = lv_chart_add_series(chart, LV_COLOR_RED);
   ser2 = lv_chart_add_series(chart, LV_COLOR_GREEN);
   ser3 = lv_chart_add_series(chart, LV_COLOR_YELLOW);
+  ser4 = lv_chart_add_series(chart, LV_COLOR_BLUE);
+    
 
   lv_chart_init_points(chart, ser1, 0);
   lv_chart_init_points(chart, ser2, 0);
   lv_chart_init_points(chart, ser3, 0);
+  lv_chart_init_points(chart, ser4, 0);
   lv_chart_refresh(chart); /*Required after direct set*/
 
   label = lv_label_create(lv_scr_act(), NULL);
@@ -35,7 +39,7 @@ Motion::Motion(Pinetime::Applications::DisplayApp* app, Controllers::MotionContr
 
   labelStep = lv_label_create(lv_scr_act(), NULL);
   lv_obj_align(labelStep, chart, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
-  lv_label_set_text(labelStep, "Steps ---");
+  lv_label_set_text(labelStep, "SMV ");
 
 /*    
   labelAcc = lv_label_create(lv_scr_act(), NULL);
@@ -77,10 +81,10 @@ void Motion::Refresh() {
   int16_t intSMV = (int)round(100*SMV);
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
-  lv_chart_set_next(chart, ser1, myX);
-  lv_chart_set_next(chart, ser2, myY);
-  lv_chart_set_next(chart, ser3, myZ);
-  
+  lv_chart_set_next(chart, ser1, intSUM);
+  lv_chart_set_next(chart, ser2, myX);
+  lv_chart_set_next(chart, ser3, myY);
+  lv_chart_set_next(chart, ser4, myZ);
   
 /*
   lv_label_set_text_fmt(labelStep, "Steps %lu", motionController.NbSteps());
@@ -89,7 +93,9 @@ void Motion::Refresh() {
 */  
 
   lv_label_set_text_fmt(labelStep, "VSum %d intSMV %d", vectorSUM, intSMV);
-  
+  lv_label_set_text_fmt(labelStep, "VSum %d intSMV %d", vectorSUM, intSMV);
+  lv_obj_align(labelStep, chart, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
+ 
 /*
   lv_label_set_text_fmt(label,
                         "X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#",
@@ -99,7 +105,6 @@ void Motion::Refresh() {
                         
 */ 
 
-  lv_label_set_text_fmt(label,"X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#", myX, myY, myZ); 
-    
+  lv_label_set_text_fmt(label,"X #FF0000 %d# Y #008000 %d# Z #FFFF00 %d#", myX, myY, myZ);     
   lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);
 }

@@ -25,6 +25,7 @@ namespace Pinetime {
         lv_chart_series_t* ser1;
         lv_chart_series_t* ser2;
         lv_chart_series_t* ser3;
+        lv_chart_series_t* ser4; 
         lv_obj_t* label;
 
         lv_obj_t* labelStep;

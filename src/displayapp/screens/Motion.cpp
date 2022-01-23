@@ -81,7 +81,7 @@ void Motion::Refresh() {
   int16_t intSMV = (int)round(100*SMV);
   
 /*  lv_chart_set_next(chart, ser1, motionController.X()); */
-  lv_chart_set_next(chart, ser1, intSUM);
+  lv_chart_set_next(chart, ser1, intSMV);
   lv_chart_set_next(chart, ser2, myX);
   lv_chart_set_next(chart, ser3, myY);
   lv_chart_set_next(chart, ser4, myZ);
